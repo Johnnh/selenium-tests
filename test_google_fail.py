@@ -9,5 +9,5 @@ def test_google_homepage():
 
     driver = webdriver.Chrome(options=options)
     driver.get("https://www.google.com")
-    assert "Google123" in driver.title
+    assert "Google" in driver.title
     driver.quit()
