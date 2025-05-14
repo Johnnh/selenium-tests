@@ -34,8 +34,16 @@ jobs:
         if: github.ref == 'refs/heads/develop'
         run: |
           pytest -m develop
-
+          
       - name: Run test-only tests
         if: github.ref == 'refs/heads/test'
         run: |
           pytest -m test
+
+      - name: Notify Slack on success or failure
+        if: always()
+        run: |
+          STATUS="${{ job.status }}"
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\":\"GitHub Actions CI finished with status: *${STATUS}* on branch *${{ github.ref_name }}*\"}" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
