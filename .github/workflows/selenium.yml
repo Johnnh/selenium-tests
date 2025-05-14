@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - develop
+      - test
 
 jobs:
   test:
@@ -23,6 +25,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run tests
+      - name: Run develop-only tests
+        if: github.ref == 'refs/heads/develop'
         run: |
-          pytest
+          pytest -m test
+
+      - name: Run test-only tests
+        if: github.ref == 'refs/heads/test'
+        run: |
+          pytest -m test

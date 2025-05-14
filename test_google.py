@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
+@pytest.mark.develop
 def test_google_homepage():
     options = Options()
     options.add_argument('--headless')
