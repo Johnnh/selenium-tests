@@ -11,5 +11,5 @@ def test_google_homepage():
 
     driver = webdriver.Chrome(options=options)
     driver.get("https://www.wecreatedesign.co.uk")
-    assert "WeCreate ♥ Websites" in driver.title
+    assert "Web design & web development in Reading, Berkshire. WeCreate." in driver.title
     driver.quit()
